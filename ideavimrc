@@ -1,0 +1,135 @@
+" enable easymotion plugin"
+set easymotion
+
+" no audio bells, only visual "
+set visualbells
+set noerrorbells
+
+" paste buffer is normal buffer on linux "
+set clipboard+=unnamed
+set clipboard+=ideaput
+
+" enable surround plugin for ideavim "
+set surround
+
+" highlight search results "
+set hlsearch
+
+" searching starts immediately when typing "
+set incsearch
+
+" ignores case by default in search "
+set ignorecase
+
+" doesn't ignore case when UPPERCASE letters exist in search "
+set smartcase
+
+" makes $var count as word " -- DISABLED
+" set iskeyword+=$
+
+" keep 5 lines between cursor and edge of screen "
+set scrolloff=5
+
+" keep longer history "
+set history=1000
+
+" hybrid line numbers -- deactivated due to performance"
+"set number
+set number relativenumber
+
+" well duh "
+"let mapleader = ','
+map <Space> <Leader>
+
+" shorter timeout between compound commands "
+set timeoutlen=150
+
+" easy mode switching - kj "
+imap kj <Esc>
+
+" easy removal of searchhighlighting "
+nnoremap ,<Space> :nohlsearch<Cr>
+
+" use IntelliJ JoinLines because it's smart "
+set ideajoin
+
+" go back to former mode after refactoring "
+set idearefactormode=keep
+
+" Replace all idea shortcuts with mapleader "
+nmap <leader>a :action $SelectAll<CR>
+nmap <leader>b :action GotoDeclaration<CR>
+nmap <leader>c :action $Copy<CR>
+nmap <leader>d :action EditorDuplicate<CR>
+nmap <leader>e :action RecentFiles<CR>
+nmap <leader>f :action Find<CR>
+nmap <leader>g :action GotoLine<CR>
+nmap <leader>h :action TypeHierarchy<CR>
+nmap <leader>i :action ImplementMethods<CR>
+nmap <leader>m :action EditorScrollToCenter<CR>
+nmap <leader>n :action FileChooser.NewFolder<CR>
+nmap <leader>o :action OverrideMethods<CR>
+nmap <leader>p :action ParameterInfo<CR>
+nmap <leader>q :action GuiDesigner.QuickJavadoc<CR>
+nmap <leader>r :action Replace<CR>
+nmap <leader>s :action SaveAll<CR>
+nmap <leader>t :action Vcs.UpdateProject<CR>
+nmap <leader>u :action GotoSuperMethod<CR>
+nmap <leader>v :action $Paste<CR>
+nmap <leader>w :action EditorSelectWord<CR>
+nmap <leader>x :action $Cut<CR>
+nmap <leader>y :action EditorDeleteLine<CR>
+nmap <leader>[ :action EditorCodeBlockStart<CR>
+nmap <leader>] :action EditorCodeBlockEnd<CR>
+
+" Put search results in the middle of the screen "
+nnoremap n nzz
+nnoremap N Nzz
+
+" easy tab switching via H and L "
+nmap H gT
+nmap L gt
+
+" kill current tab "
+nmap gx :action CloseEditor<CR>
+
+" append ; at the end of the line via <Leader>; "
+nnoremap <Leader>; A;<Esc>
+inoremap <Leader>; <Esc>A;<Esc>
+
+" acejump with s, word mode with S -- deactivated, using acejump-lite"
+"noremap s :action AceAction<CR>
+"noremap S :action AceWordAction<CR>
+noremap s :action emacsIDEAs.AceJump<CR>
+noremap S :action emacsIDEAs.AceJumpWord<CR>
+
+"delete whole function with dm (only working in php class files - experimental)"
+nnoremap dm [mV/^\s}<CR>d:nohlsearch<CR>
+
+"Y to yank until end of line "
+map Y y$
+
+" jump to selection begin when yanking, not first yanked char in buffer "
+vnoremap y mxy`x
+
+" go to next / previous file or line "
+nnoremap <A-H> :action Back<CR>
+nnoremap <A-L> :action Forward<CR>
+"nnoremap <M-H> :action Back<CR>
+"nnoremap <M-L> :action Forward<CR>
+
+" jump to end of line via C-e"
+nnoremap <C-e> :action EditorLineEnd<CR>
+inoremap <C-e> <Esc>:action EditorLineEnd<CR>i
+
+" easy code splits "
+nnoremap <C-0> :action SplitVertically<CR>
+nnoremap <C--> :action SplitHorizontally<CR>
+nnoremap <C-=> :action Unsplit<CR>
+nnoremap <C-m> :action MoveEditorToOppositeTabGroup<CR>
+nnoremap <C-h> <C-W>h
+nnoremap <C-l> <C-W>l
+nnoremap <C-j> <C-W>j
+nnoremap <C-k> <C-W>k
+
+nnoremap <Leader><TAB> :action NextWindow<CR>

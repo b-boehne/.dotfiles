@@ -1,0 +1,16 @@
+let scrollstep = "200"
+let barpostition = "bottom"
+let mapleader = ","
+let hintcharacters = "qwertzuiopasdfghjklyxcvbnm"
+set smoothscroll
+set autohidecursor
+set completeonopen
+map F createActiveTabbedHint
+map R reloadTabUncached
+map J goBack
+map K goForward
+map H previousTab
+map L nextTab
+
+let configpath = '/home/bb/.cvimrc'
+set localconfig

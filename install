@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+if ! which zsh >/dev/null; then
+	echo "Installing zsh"
+  brew install zsh
+fi
+
+if [[ ! -d ~/.oh-my-zsh ]]; then
+	echo "Installing oh-my-zsh"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+fi
+
+if [[ ! -d ~/.oh-my-zsh/custom/themes/powerlevel10k ]]; then
+  echo "Installing Powerlevel10k"
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
+fi
+
+if ! which fzf >/dev/null; then
+  brew install fzf
+  "$(brew --prefix)"/opt/fzf/install
+fi
+
+if ! which rcup >/dev/null; then
+	echo "Installing rcm"
+  brew install rcm
+fi
+
+if ! which tmux >/dev/null; then
+	echo "Installing tmux"
+  brew install tmux
+fi
+
+echo "symlinking these files:"
+lsrc -x install
+rcup -x install
