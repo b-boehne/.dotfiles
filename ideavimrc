@@ -6,7 +6,7 @@ set visualbells
 set noerrorbells
 
 " paste buffer is normal buffer on linux "
-set clipboard+=unnamed
+set clipboard+=unnamedplus
 set clipboard+=ideaput
 
 " enable surround plugin for ideavim "
@@ -42,7 +42,7 @@ set number relativenumber
 map <Space> <Leader>
 
 " shorter timeout between compound commands "
-set timeoutlen=150
+set timeoutlen=200
 
 " easy mode switching - kj "
 imap kj <Esc>
@@ -76,7 +76,7 @@ nmap <leader>s :action SaveAll<CR>
 nmap <leader>t :action Vcs.UpdateProject<CR>
 nmap <leader>u :action GotoSuperMethod<CR>
 nmap <leader>v :action $Paste<CR>
-nmap <leader>w :action EditorSelectWord<CR>
+nmap <leader>w :action CloseEditor<CR>
 nmap <leader>x :action $Cut<CR>
 nmap <leader>y :action EditorDeleteLine<CR>
 nmap <leader>[ :action EditorCodeBlockStart<CR>
@@ -98,10 +98,10 @@ nnoremap <Leader>; A;<Esc>
 inoremap <Leader>; <Esc>A;<Esc>
 
 " acejump with s, word mode with S -- deactivated, using acejump-lite"
-"noremap s :action AceAction<CR>
-"noremap S :action AceWordAction<CR>
-noremap s :action emacsIDEAs.AceJump<CR>
-noremap S :action emacsIDEAs.AceJumpWord<CR>
+noremap s :action AceAction<CR>
+noremap S :action AceWordAction<CR>
+" noremap s :action emacsIDEAs.AceJump<CR>
+" noremap S :action emacsIDEAs.AceJumpWord<CR>
 
 "delete whole function with dm (only working in php class files - experimental)"
 nnoremap dm [mV/^\s}<CR>d:nohlsearch<CR>

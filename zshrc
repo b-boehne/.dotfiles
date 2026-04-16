@@ -5,7 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/texlive/2017/bin/x86_64-linux:/snap/bin:/home/bb/.yarn/bin/:/home/bb/bin:/usr/local/go/bin:/home/bb/.cargo/bin:/opt/local/bin
+export XDG_DATA_DIRS=$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:/home/h2invent/.local/share/flatpak/exports/share
+
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/texlive/2017/bin/x86_64-linux:/snap/bin:/home/bb/.yarn/bin/:/home/bb/bin:/usr/local/go/bin:/home/bb/.cargo/bin:/opt/local/bin:$HOME/.cargo/bin
 export HM_APPLICATION_ENV=development
 export VISUAL=vim
 export EDITOR=$VISUAL
@@ -13,7 +15,9 @@ export TERM="xterm-256color"
 export DISABLE_UPDATE_PROMPT=true
 #faster switch to vi-mode
 export KEYTIMEOUT=8
-eval "$(/opt/homebrew/bin/brew shellenv)"
+
+#eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(/usr/local/bin/k3d completion zsh)"
 
 export TEXTNOTE_DIR="/home/bb/textnote/"
 
@@ -27,6 +31,9 @@ export FZF_DEFAULT_OPTS="--height 20% --select-1"
 # Golang stuff
 export GOPATH=${HOME}/go
 export PATH=$GOPATH/bin:$PATH
+
+# k3s as default kubeconfig
+export KUBECONFIG=~/.kube/config
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
@@ -60,7 +67,7 @@ HYPHEN_INSENSITIVE="true"
 HIST_STAMPS="dd.mm"
 
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(sudo git colored-man-pages vi-mode z)
+plugins=(sudo git colored-man-pages docker docker-compose fzf kubectl vi-mode z)
 
 source $ZSH/oh-my-zsh.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -192,7 +199,8 @@ alias gpdo="git push --delete origin"
 alias gpsup='git push --set-upstream origin "$(git_current_branch)"'
 alias doch='sudo $(fc -ln -1)'
 alias inst='sudo apt-get install'
-alias l='ls -halFG'
+alias l='ls -halF'
+alias lt='ls -halFtr'
 alias mk='minikube'
 alias mkdir='mkdir -p'
 alias ping8='ping 8.8.8.8'
@@ -214,6 +222,7 @@ forgit_checkout_file=gcof
 forgit_checkout_branch=gcob
 forgit_checkout_tag=gcot
 forgit_checkout_commit=gcoc
+forgit_reflog=grel
 source ~/.oh-my-zsh/custom/plugins/forgit/forgit.plugin.zsh
 
 # Hacky way of loading git functions (e.g. for gDDD compdef)

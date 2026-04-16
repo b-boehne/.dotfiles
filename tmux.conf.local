@@ -421,6 +421,7 @@ tmux_conf_uninstall_plugins_on_reload=true
 set -g mouse on
 set -g history-limit 50000
 set -g mode-keys vi
+set -g default-shell /bin/zsh
 
 # prefix
 set -g prefix C-Space
@@ -461,6 +462,10 @@ unbind n
 unbind p
 bind M-H previous-window # select previous window
 bind M-L next-window     # select next window
+
+# move windows using < and >
+bind -r < swap-window -t -1\; select-window -t -1
+bind -r > swap-window -t +1\; select-window -t +1
 
 
 # easy vim-copy-mode

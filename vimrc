@@ -40,8 +40,8 @@ augroup autosourcing
 augroup END
 
 " paste buffer is normal buffer on linux -- DISABLED for Mac OS "
-" set clipboard=unnamedplus
-set clipboard=unnamed
+set clipboard=unnamedplus
+"set clipboard=unnamed
 
 " highlight search results "
 set hlsearch
