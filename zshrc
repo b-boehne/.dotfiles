@@ -5,6 +5,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+autoload -Uz compinit && compinit
+
 export XDG_DATA_DIRS=$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:/home/h2invent/.local/share/flatpak/exports/share
 
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/texlive/2017/bin/x86_64-linux:/snap/bin:/home/bb/.yarn/bin/:/home/bb/bin:/usr/local/go/bin:/home/bb/.cargo/bin:/opt/local/bin:$HOME/.cargo/bin
@@ -18,6 +20,7 @@ export KEYTIMEOUT=8
 
 #eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(/usr/local/bin/k3d completion zsh)"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
 
 export TEXTNOTE_DIR="/home/bb/textnote/"
 
@@ -27,6 +30,9 @@ export ZSH=~/.oh-my-zsh
 # Fzf vars
 export FZF_COMPLETION_TRIGGER='**'
 export FZF_DEFAULT_OPTS="--height 20% --select-1"
+
+# Set up fzf key bindings and fuzzy completion
+#source <(fzf --zsh)
 
 # Golang stuff
 export GOPATH=${HOME}/go
@@ -67,7 +73,7 @@ HYPHEN_INSENSITIVE="true"
 HIST_STAMPS="dd.mm"
 
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(sudo git colored-man-pages docker docker-compose fzf kubectl vi-mode z)
+plugins=(sudo git colored-man-pages docker docker-compose fzf fzf-zsh-plugin kubectl vi-mode z)
 
 source $ZSH/oh-my-zsh.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -234,3 +240,4 @@ export NVM_DIR="$HOME/.nvm"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+

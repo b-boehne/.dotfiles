@@ -6,6 +6,10 @@ xkb_symbols "bastian" {
     include "level3(ralt_switch)"
     include "capslock(backspace)"
 
+		key <PRSC> { [ XF86AudioLowerVolume ] };
+		key <SCLK> { [ XF86AudioRaiseVolume ] };
+		key <PAUS> { [ XF86AudioPlay ] };
+
     key <AD03> { [ e, E, EuroSign, EuroSign ] };
     key <AC01> { [ a, A, adiaeresis, Adiaeresis ] };
     key <AD09> { [ o, O, odiaeresis, Odiaeresis ] };
