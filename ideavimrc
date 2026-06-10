@@ -7,7 +7,7 @@ set noerrorbells
 
 " paste buffer is normal buffer on linux "
 set clipboard+=unnamedplus
-set clipboard+=ideaput
+" set clipboard+=ideaput
 
 " enable surround plugin for ideavim "
 set surround

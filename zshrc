@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 autoload -Uz compinit && compinit
 
 export XDG_DATA_DIRS=$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:/home/h2invent/.local/share/flatpak/exports/share
@@ -18,9 +11,14 @@ export DISABLE_UPDATE_PROMPT=true
 #faster switch to vi-mode
 export KEYTIMEOUT=8
 
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+
 #eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(/usr/local/bin/k3d completion zsh)"
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
+#eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
 
 export TEXTNOTE_DIR="/home/bb/textnote/"
 
@@ -31,8 +29,6 @@ export ZSH=~/.oh-my-zsh
 export FZF_COMPLETION_TRIGGER='**'
 export FZF_DEFAULT_OPTS="--height 20% --select-1"
 
-# Set up fzf key bindings and fuzzy completion
-#source <(fzf --zsh)
 
 # Golang stuff
 export GOPATH=${HOME}/go
@@ -41,21 +37,15 @@ export PATH=$GOPATH/bin:$PATH
 # k3s as default kubeconfig
 export KUBECONFIG=~/.kube/config
 
-ZSH_THEME="powerlevel10k/powerlevel10k"
-
 DEFAULT_USER="bab"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status)
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
-POWERLEVEL9K_SHORTEN_DELIMITER=""
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
-#POWERLEVEL9K_VCS_SHORTEN_DELIMITER=""
-#POWERLEVEL9K_VCS_SHORTEN_LENGTH=7
-#POWERLEVEL9K_VCS_SHORTEN_MIN_LENGTH=6
-#POWERLEVEL9K_VCS_SHORTEN_STRATEGY="truncate_from_right"
-#POWERLEVEL9K_VI_INSERT_MODE_STRING="I"
-#POWERLEVEL9K_VI_COMMAND_MODE_STRING="N"
-#POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+plugins=(sudo git colored-man-pages docker docker-compose fzf kubectl vi-mode z)
+
+source $ZSH/oh-my-zsh.sh
+
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
@@ -71,12 +61,6 @@ HYPHEN_INSENSITIVE="true"
 
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 HIST_STAMPS="dd.mm"
-
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(sudo git colored-man-pages docker docker-compose fzf fzf-zsh-plugin kubectl vi-mode z)
-
-source $ZSH/oh-my-zsh.sh
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 BG_BLACK=$'\033[40m'
 BG_GREEN=$'\033[42m'
@@ -238,6 +222,4 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
+eval "$(oh-my-posh init zsh --config ~/src/.dotfiles/oh-my-posh.omp.json)"

@@ -49,20 +49,26 @@ tmux_conf_24b_colour=false
 tmux_conf_theme_colour_1="#080808"    # dark gray
 tmux_conf_theme_colour_2="#303030"    # gray
 tmux_conf_theme_colour_3="#8a8a8a"    # light gray
-tmux_conf_theme_colour_4="#00afff"    # light blue
+#tmux_conf_theme_colour_4="#00afff"    # light blue
+tmux_conf_theme_colour_4="#2aa198"    # light blue (cyan solarized)
 tmux_conf_theme_colour_5="#ffff00"    # yellow
 tmux_conf_theme_colour_6="#080808"    # dark gray
 tmux_conf_theme_colour_7="#e4e4e4"    # white
 tmux_conf_theme_colour_8="#080808"    # dark gray
-tmux_conf_theme_colour_9="#ffff00"    # yellow
-tmux_conf_theme_colour_10="#ff00af"   # pink
-tmux_conf_theme_colour_11="#5fff00"   # green
+#tmux_conf_theme_colour_9="#ffff00"    # yellow
+tmux_conf_theme_colour_9="#b58900"    # yellow (solarized)
+#tmux_conf_theme_colour_10="#ff00af"   # pink
+tmux_conf_theme_colour_10="#cb4b16"   # pink (orange solarized)
+#tmux_conf_theme_colour_11="#5fff00"   # green
+tmux_conf_theme_colour_11="#859900"   # green (solarized)
 tmux_conf_theme_colour_12="#8a8a8a"   # light gray
 tmux_conf_theme_colour_13="#e4e4e4"   # white
 tmux_conf_theme_colour_14="#080808"   # dark gray
 tmux_conf_theme_colour_15="#080808"   # dark gray
-tmux_conf_theme_colour_16="#d70000"   # red
-tmux_conf_theme_colour_17="#e4e4e4"   # white
+#tmux_conf_theme_colour_16="#d70000"   # red
+tmux_conf_theme_colour_16="#dc322f"   # red (solarized)
+#tmux_conf_theme_colour_17="#e4e4e4"   # white
+tmux_conf_theme_colour_17="#eee8d5"   # white (solarized)
 
 # default theme (ansi)
 #tmux_conf_theme_colour_1="colour0"
@@ -232,7 +238,7 @@ tmux_conf_theme_status_right=" #{prefix}#{mouse}#{pairing}#{synchronized}#{?batt
 
 # status left style
 tmux_conf_theme_status_left_fg="$tmux_conf_theme_colour_6,$tmux_conf_theme_colour_7,$tmux_conf_theme_colour_8"
-tmux_conf_theme_status_left_bg="$tmux_conf_theme_colour_9,$tmux_conf_theme_colour_10,$tmux_conf_theme_colour_11"
+tmux_conf_theme_status_left_bg="$tmux_conf_theme_colour_9,$tmux_conf_theme_colour_11,$tmux_conf_theme_colour_11"
 tmux_conf_theme_status_left_attr="bold,none,none"
 
 # status right style
@@ -476,3 +482,8 @@ bind -n C-l send-keys C-l
 
 # lower repeat time for quicker working after pane switching
 set -g repeat-time 400
+
+# set window name to current dir name
+set-option -g status-interval 5
+set-option -g automatic-rename on
+set-option -g automatic-rename-format '#{b:pane_current_path}'

@@ -1,0 +1,31 @@
+#!/bin/bash
+
+COMMIT_MSG_FILE=$1
+COMMIT_SOURCE=$2
+
+# Skip for merge commits
+if [ "$COMMIT_SOURCE" = "merge" ]; then
+  exit 0
+fi
+
+# Get the current branch name
+BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+
+# Extract the ticket code (e.g., MEA-123 from feature/MEA-123-description)
+TICKET_CODE=$(echo "$BRANCH_NAME" | sed -n 's/.*\/\([A-Z]\+\-[0-9]\+\).*/\1/p')
+
+# If no ticket code found, exit silently
+if [ -z "$TICKET_CODE" ]; then
+  exit 0
+fi
+
+# Get the current commit message
+COMMIT_MSG=$(cat "$COMMIT_MSG_FILE")
+
+# Check if the message already starts with the ticket code (avoid duplication)
+if [[ "$COMMIT_MSG" =~ ^$TICKET_CODE: ]]; then
+  exit 0
+fi
+
+# Prepend the ticket code to the commit message
+echo "$TICKET_CODE: $COMMIT_MSG" > "$COMMIT_MSG_FILE"
